@@ -1,0 +1,93 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Fleet Complete
+providerId: fleetcomplete
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Fleet Management
+- Telematics
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Fleet Complete spend. The dominant cost is the per-vehicle
+  fleet management subscription (hardware plus software: GPS/telematics
+  tracking, driver behavior, dispatch, geofencing, HOS/ELD compliance),
+  quoted per fleet through direct sales rather than metered like typical
+  developer-platform APIs. Standard access to the Unity GraphQL API and the
+  legacy Integration WebAPI is bundled into that subscription at no separate
+  charge. The only additional, separately billed line item identified is
+  Professional Services work for custom integrations, fields, or endpoints
+  beyond the standard surface.
+notes: >-
+  Per-vehicle subscription rates and Professional Services rates are not
+  published; verify directly with Fleet Complete/Powerfleet sales. There is
+  no per-API-call or per-token usage meter to reconcile, since API access
+  itself is not billed separately from the fleet subscription.
+sources:
+- https://www.fleetcomplete.com/api/
+- https://www.fleetcomplete.com/
+- https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Fleet Complete
+serviceCategory: IoT / Fleet Management and Telematics
+billingModel:
+  pricingCategory: Flat-Rate / Contract
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Fleet Complete Fleet Management Subscription
+  ServiceCategory: IoT / Fleet Management and Telematics
+  ProviderName: Fleet Complete
+  PublisherName: Powerfleet
+  InvoiceIssuerName: Fleet Complete
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Flat-Rate
+meters:
+- name: vehicles_under_management
+  description: Number of vehicles/assets enrolled on a Fleet Complete subscription, the primary driver of the monthly invoice.
+  unit: vehicles
+  aggregation: count
+  dimensions:
+  - account
+  - fleet
+- name: hardware_units
+  description: Telematics devices and optional dash cams provisioned per vehicle, typically a one-time or amortized hardware cost.
+  unit: devices
+  aggregation: count
+  dimensions:
+  - account
+  - fleet
+- name: professional_services_hours
+  description: Billable hours for Professional Services custom API/integration work, outside the standard free Unity/Integration WebAPI surface.
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+  - engagement
+principles:
+- name: Visibility
+  description: Track vehicles under management and any Professional Services engagements against the fleet subscription invoice; the Unity/Integration WebAPI usage itself carries no separate charge to monitor.
+- name: Allocation
+  description: Map per-vehicle subscription costs to fleets/departments using Unity API groups (getGroups) so spend maps to internal cost centers.
+- name: Optimization
+  description: Right-size the vehicle count under active subscription, and scope Professional Services requests narrowly (custom fields vs. full custom endpoints) to control one-off integration costs.
+- name: Accountability
+  description: Assign an internal owner for the fleet subscription contract and for any Professional Services statements of work; review counts and engagements at renewal.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

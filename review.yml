@@ -1,0 +1,95 @@
+aid: fleetcomplete
+name: Fleet Complete
+review:
+  question: Does Fleet Complete expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Fleet Complete's current developer
+    surface, the Unity API, is a GraphQL API with Query and Mutation
+    operations only - no Subscription type or other server-push transport is
+    documented. The older, regionally hosted Integration WebAPI / EcoFleet-
+    SeeMe REST surface is likewise plain request/response REST over HTTPS.
+    Real-time vehicle telemetry is retrieved by polling snapshot/report
+    queries, not by a documented WebSocket or SSE channel, so there is no
+    server-push protocol on Fleet Complete's own public API to model.
+findings:
+  summary: |
+    Fleet Complete does not publish a documented public WebSocket API. Its
+    current developer surface is the Unity API - a Bearer-token-authenticated
+    GraphQL API at https://api.fleetcomplete.com/graphql covering vehicles,
+    drivers/people, geofences, devices/cameras, groups/roles, and reports/work
+    schedules with roughly 30 queries and 22 mutations. The interactive docs
+    at https://api.fleetcomplete.com/ and the marketing page at
+    https://www.fleetcomplete.com/api/ describe only Query and Mutation
+    operations; no Subscription type, ws://, or wss:// endpoint appears
+    anywhere in the documentation. Fleet Complete also still references an
+    older REST "Integration WebAPI" (tlshosted.fleetcomplete.com, versioned
+    v8_5_0/v8_6_1) and a regionally branded EcoFleet/SeeMe REST instance
+    (app.ecofleet.com), both OAuth-authenticated, plain request/response REST
+    covering vehicles, places/geofences, people, dispatch tasks, work
+    schedules, and logbook reporting - again no WebSocket transport.
+  openSource: |
+    Fleet Complete / Powerfleet's API surfaces are proprietary and closed
+    source; no public SDK or client repository was found. Standard API access
+    (both Unity and the legacy Integration WebAPI) is provided free of charge
+    to existing Fleet Complete/Powerfleet clients once they create a token;
+    custom endpoints or fields built by Fleet Complete Professional Services
+    carry additional fees.
+  transports:
+    - protocol: GraphQL over HTTPS
+      scheme: https
+      baseURL: https://api.fleetcomplete.com/graphql
+      documented: true
+      note: Unity API. Bearer token auth via /login/token; Query and Mutation operations only.
+    - protocol: REST
+      scheme: https
+      baseURL: https://app.ecofleet.com/seeme/services
+      documented: true
+      note: Legacy/regional Integration WebAPI (also seen branded EcoFleet/SeeMe), OAuth-authenticated, versioned v8_5_0/v8_6_1.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Fleet Complete's Unity API docs, partner-ecosystem page, or legacy Integration WebAPI help pages as of the review date.
+  endpointsConfirmed:
+    - POST https://api.fleetcomplete.com/login/token
+    - GET  https://api.fleetcomplete.com/login/userinfo
+    - POST https://api.fleetcomplete.com/graphql (getVehicles, getVehicleById, getVehiclesByVin, getActiveVehicles, getVehicleCustomFields, getVehicleMappedSensors, getVehicleTypes, getLatestSnapshots, getSnapshots)
+    - POST https://api.fleetcomplete.com/graphql (getPeople, getPersonById, getPersonCustomFields, getDriverAssignments)
+    - POST https://api.fleetcomplete.com/graphql (getGeofenceById, getGeofences)
+    - POST https://api.fleetcomplete.com/graphql (getDeviceById, getDevicesBySerial, getCameraPrivacyMode)
+    - POST https://api.fleetcomplete.com/graphql (getGroups, getRoles)
+    - POST https://api.fleetcomplete.com/graphql (getWrappedReport, getWrappedReportInputs, getWorkScheduleById, getWorkSchedules, getRuleById, getRules, getLabels, getMetaSensors, getUserInfo)
+    - GET  https://app.ecofleet.com/seeme/services/Api/Vehicles/get
+    - GET  https://app.ecofleet.com/seeme/services/Api/Places/get
+sources:
+  - url: https://www.fleetcomplete.com/api/
+    type: Documentation
+    note: Developer API landing page - free standard access, token creation, support contact.
+  - url: https://api.fleetcomplete.com/
+    type: APIReference
+    note: Unity GraphQL API interactive documentation - auth flow, rate limiting, Query/Mutation field lists.
+  - url: https://www.fleetcomplete.com/partner-ecosystem/
+    type: Documentation
+    note: Describes the open API as "Clear GraphQL Schema" plus the Marketplace partner certification program.
+  - url: https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help
+    type: Documentation
+    note: Legacy Integration WebAPI help page - free standard endpoints vs paid Professional Services custom endpoints.
+  - url: http://tlshosted.fleetcomplete.com/v8_5_0/Integration/WebAPI/fleet-docs/dist/index.html
+    type: Documentation
+    note: Legacy Integration WebAPI reference (versioned v8_5_0).
+  - url: https://app.ecofleet.com/seeme/services/apidoc/seeme
+    type: APIReference
+    note: OAuth REST resource list - vehicles, places, people, tasks, work schedules, logbook, reports.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or other server-push protocol surface exists on any
+    documented Fleet Complete API. The Unity API is GraphQL request/response
+    (Query/Mutation only, no Subscription type) and the legacy Integration
+    WebAPI / EcoFleet-SeeMe surface is REST request/response. No AsyncAPI
+    document was created because there is no real-time transport on Fleet
+    Complete's own public API to model.

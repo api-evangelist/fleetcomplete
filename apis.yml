@@ -1,0 +1,204 @@
+aid: fleetcomplete
+url: https://raw.githubusercontent.com/api-evangelist/fleetcomplete/refs/heads/main/apis.yml
+name: Fleet Complete
+kind: company
+description: Fleet Complete (operating under parent company Powerfleet since its
+  2024 rebrand) is a global connected commercial vehicle and mobile workforce
+  management platform - GPS/telematics tracking, driver safety, dispatching,
+  geofencing, and regulatory (HOS/ELD) compliance. Its current developer surface
+  is the Unity API, a Bearer-token-authenticated GraphQL API at
+  api.fleetcomplete.com/graphql covering vehicles, drivers/people, geofences,
+  devices/cameras, groups/roles, and reports/work schedules with roughly 30
+  queries and 22 mutations. Fleet Complete also still references an older,
+  regionally hosted REST "Integration WebAPI" / EcoFleet-SeeMe surface
+  (versioned v8_5_0/v8_6_1) covering vehicle trip history, tasks/dispatch, work
+  schedules, and logbook reporting. Standard API access is provided free to
+  existing Fleet Complete/Powerfleet clients; custom integrations built by
+  Fleet Complete Professional Services carry additional fees.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Fleet Management
+- Telematics
+- GPS Tracking
+- IoT
+- GraphQL
+- Vehicle Tracking
+- Driver Safety
+- Geofencing
+created: '2026-07-03'
+modified: '2026-07-03'
+specificationVersion: '0.19'
+apis:
+- aid: fleetcomplete:fleetcomplete-unity-vehicles-api
+  name: Fleet Complete Unity Vehicles API
+  tags:
+  - Vehicles
+  - Telematics
+  - GPS Tracking
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.fleetcomplete.com/
+  baseURL: https://api.fleetcomplete.com/graphql
+  properties:
+  - url: https://www.fleetcomplete.com/api/
+    type: Documentation
+  - url: https://api.fleetcomplete.com/
+    type: APIReference
+  - url: graphql/fleetcomplete-graphql.md
+    type: GraphQL
+  description: List and filter vehicles (getVehicles with VehicleFilter), fetch a
+    vehicle by ID or VIN (getVehicleById, getVehiclesByVin), list active vehicles,
+    read vehicle types and custom fields, inspect mapped sensors, and pull the
+    latest or historical telemetry snapshots (getLatestSnapshots, getSnapshots)
+    over a date range. Mutations update vehicle attributes/custom fields and move
+    vehicles between groups (updateVehicle, updateVehicleCustomField,
+    changeVehicleGroups, changeVehiclesGroup).
+- aid: fleetcomplete:fleetcomplete-unity-drivers-people-api
+  name: Fleet Complete Unity Drivers & People API
+  tags:
+  - Drivers
+  - People
+  - Driver Behavior
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.fleetcomplete.com/
+  baseURL: https://api.fleetcomplete.com/graphql
+  properties:
+  - url: https://www.fleetcomplete.com/api/
+    type: Documentation
+  - url: https://api.fleetcomplete.com/
+    type: APIReference
+  - url: graphql/fleetcomplete-graphql.md
+    type: GraphQL
+  description: Manage the people and drivers in a fleet - list and filter people
+    (getPeople with PersonFilter), fetch a person by ID, read custom fields, and
+    look up driver-to-vehicle assignments (getDriverAssignments). Mutations
+    create, update, and delete people, set custom roles, assign/unassign drivers
+    to vehicles, and issue, update, or revoke driver identification tokens
+    (createDriverToken, updateDriverToken, deleteDriverToken) used for in-cab
+    duty-status login.
+- aid: fleetcomplete:fleetcomplete-unity-geofences-api
+  name: Fleet Complete Unity Geofences API
+  tags:
+  - Geofences
+  - Zones
+  - Alerts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.fleetcomplete.com/
+  baseURL: https://api.fleetcomplete.com/graphql
+  properties:
+  - url: https://www.fleetcomplete.com/api/
+    type: Documentation
+  - url: https://api.fleetcomplete.com/
+    type: APIReference
+  - url: graphql/fleetcomplete-graphql.md
+    type: GraphQL
+  description: Fetch a geofence by ID or list/filter geofences (getGeofenceById,
+    getGeofences with GeofenceFilter), then create, update, or delete a geofence
+    and move geofences between groups (changeGeofenceGroups). Geofences back the
+    zone-entry/exit alerts fleets use for compliance and dispatch.
+- aid: fleetcomplete:fleetcomplete-unity-devices-cameras-api
+  name: Fleet Complete Unity Devices & Cameras API
+  tags:
+  - Devices
+  - Hardware
+  - Dash Cam
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.fleetcomplete.com/
+  baseURL: https://api.fleetcomplete.com/graphql
+  properties:
+  - url: https://www.fleetcomplete.com/api/
+    type: Documentation
+  - url: https://api.fleetcomplete.com/
+    type: APIReference
+  - url: graphql/fleetcomplete-graphql.md
+    type: GraphQL
+  description: Look up telematics hardware by ID or serial (getDeviceById,
+    getDevicesBySerial; the older getDeviceBySerial is documented as deprecated),
+    and read or set in-cab dash-cam privacy mode (getCameraPrivacyMode,
+    setCameraPrivacyMode).
+- aid: fleetcomplete:fleetcomplete-unity-groups-roles-api
+  name: Fleet Complete Unity Groups & Roles API
+  tags:
+  - Groups
+  - Roles
+  - Access Control
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.fleetcomplete.com/
+  baseURL: https://api.fleetcomplete.com/graphql
+  properties:
+  - url: https://www.fleetcomplete.com/api/
+    type: Documentation
+  - url: https://api.fleetcomplete.com/
+    type: APIReference
+  - url: graphql/fleetcomplete-graphql.md
+    type: GraphQL
+  description: Read the organizational groups and roles used to segment vehicles,
+    people, and geofences (getGroups, getRoles), and create, update, or delete
+    groups (createGroup, updateGroup, deleteGroup).
+- aid: fleetcomplete:fleetcomplete-unity-reports-scheduling-api
+  name: Fleet Complete Unity Reports & Scheduling API
+  tags:
+  - Reports
+  - Work Schedules
+  - Rules
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.fleetcomplete.com/
+  baseURL: https://api.fleetcomplete.com/graphql
+  properties:
+  - url: https://www.fleetcomplete.com/api/
+    type: Documentation
+  - url: https://api.fleetcomplete.com/
+    type: APIReference
+  - url: graphql/fleetcomplete-graphql.md
+    type: GraphQL
+  description: Pull "wrapped" report data and its input options (getWrappedReport,
+    getWrappedReportInputs), read work schedules by ID or in bulk
+    (getWorkScheduleById, getWorkSchedules), read alert/compliance rules
+    (getRuleById, getRules), and look up labels, meta-sensor definitions, and the
+    authenticated caller's own profile (getLabels, getMetaSensors, getUserInfo).
+- aid: fleetcomplete:fleetcomplete-legacy-integration-webapi
+  name: Fleet Complete Legacy Integration WebAPI
+  tags:
+  - Legacy
+  - REST
+  - Dispatch
+  - Trips
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help
+  baseURL: https://app.ecofleet.com/seeme/services
+  properties:
+  - url: http://tlshosted.fleetcomplete.com/v8_5_0/Integration/WebAPI/fleet-docs/dist/index.html
+    type: Documentation
+  - url: https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help
+    type: Documentation
+  - url: https://app.ecofleet.com/seeme/services/apidoc/seeme
+    type: APIReference
+  description: Older, regionally hosted OAuth REST surface predating the Unity
+    GraphQL API, still referenced in Fleet Complete/Powerfleet support materials
+    as the "FleetComplete WebAPI" (versioned v8_5_0/v8_6_1) and, on at least one
+    hosted instance, branded EcoFleet/SeeMe. Confirmed resource paths include
+    Api/Vehicles/get (vehicle list, live location, trip/raw-data history) and
+    Api/Places/get (geofences); the same instance's docs also describe people,
+    dispatch tasks (create/assign/status), work schedules, logbook/HOS trip
+    approval, expense tracking, Garmin device messaging, and predefined
+    CSV/XLS/HTML/PDF reports, though their exact paths were not individually
+    confirmed. Standard endpoints are free; custom endpoints built by Fleet
+    Complete Professional Services carry additional fees (contact
+    fcapi@fleetcomplete.com). Some listed resource categories above are
+    documentation-confirmed by name only, not by individually verified path -
+    endpoints partially modeled from category names, not fabricated.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/fleet-complete
+- type: Website
+  url: https://www.fleetcomplete.com/
+- type: Documentation
+  url: https://www.fleetcomplete.com/api/
+- type: Plans
+  url: plans/fleetcomplete-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/fleetcomplete-rate-limits.yml
+- type: FinOps
+  url: finops/fleetcomplete-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

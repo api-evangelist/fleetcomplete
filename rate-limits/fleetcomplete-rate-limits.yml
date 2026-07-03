@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Fleet Complete
+providerId: fleetcomplete
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Fleet Management
+- Telematics
+- GraphQL
+- Rate Limiting
+description: >-
+  Fleet Complete's Unity GraphQL API does not publish a numeric per-minute or
+  per-day request quota. Instead it enforces a strict concurrency rule -
+  only one active request per user at a time - and rejects a second
+  concurrent request with HTTP 429. Access tokens are short-lived (300
+  seconds) and must be refreshed using a refresh token valid for up to 12
+  hours, which bounds how long a session can operate without
+  re-authenticating. The legacy Integration WebAPI does not publish numeric
+  rate limits either.
+notes: >-
+  No published per-endpoint or per-account request-per-second/minute ceiling
+  was found for either API surface as of the review date. Verify current
+  limits directly with Fleet Complete/Powerfleet support if building a
+  production integration.
+sources:
+- https://api.fleetcomplete.com/
+- https://www.fleetcomplete.com/api/
+- https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help
+responseCodes:
+  throttled: 429
+limits:
+- name: Unity API Concurrency
+  scope: user
+  metric: requests
+  limit: 1 active request per user
+  notes: A second request issued while one is in flight returns HTTP 429.
+- name: Unity Access Token TTL
+  scope: session
+  metric: seconds
+  limit: 300
+  notes: Access tokens issued by POST /login/token expire after 5 minutes.
+- name: Unity Refresh Token TTL
+  scope: session
+  metric: hours
+  limit: 12
+  notes: Refresh tokens allow renewing an access token without re-entering credentials, for up to 12 hours.
+- name: Legacy Integration WebAPI Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the legacy Integration WebAPI or EcoFleet/SeeMe instance.
+policies:
+- name: Single In-Flight Request
+  description: Unity API clients must wait for a response (or timeout) before issuing the next request; parallelizing calls for the same user will trigger 429s.
+- name: Token Refresh
+  description: Clients should refresh the access token proactively before the 300-second TTL expires, using the refresh token, and re-authenticate fully once the 12-hour refresh window lapses.
+- name: Backoff Strategy
+  description: Clients should implement short exponential backoff with jitter on 429 responses rather than immediate retry, given the strict one-request-at-a-time model.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

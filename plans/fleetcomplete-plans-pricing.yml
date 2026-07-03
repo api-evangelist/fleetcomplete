@@ -1,0 +1,108 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Fleet Complete
+providerId: fleetcomplete
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Fleet Management
+- Telematics
+- GraphQL
+- Plans
+description: >-
+  Fleet Complete does not sell API access as a standalone metered product.
+  Access to the Unity GraphQL API and the legacy Integration WebAPI is
+  provided free of charge to existing Fleet Complete/Powerfleet fleet
+  management subscribers once they create an authentication token. The
+  underlying fleet management subscription itself - hardware (GPS/telematics
+  devices, optional dash cams) plus software (tracking, dispatch, HOS/ELD
+  compliance, geofencing) - is quoted per vehicle per month through direct
+  sales and is not published. Custom integrations, additional fields, or
+  bespoke endpoints built by Fleet Complete Professional Services carry
+  additional, separately negotiated fees.
+notes: >-
+  No public per-request or per-call API pricing was found. Exact per-vehicle
+  subscription rates and Professional Services rates are not published and
+  must be confirmed with Fleet Complete/Powerfleet sales
+  (fcapi@fleetcomplete.com for API-specific questions,
+  support@powerfleet.com generally).
+sources:
+- https://www.fleetcomplete.com/api/
+- https://www.fleetcomplete.com/
+- https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help
+plans:
+- id: fleetcomplete-subscription
+  name: Fleet Management Subscription (Contact Sales)
+  type: enterprise
+  description: >-
+    Core Fleet Complete/Powerfleet product - per-vehicle hardware and
+    software subscription covering GPS tracking, driver behavior, dispatch,
+    geofencing, and HOS/ELD compliance. Pricing is quoted per fleet by direct
+    sales and is not published.
+  entries:
+  - label: Per-Vehicle Subscription
+    name: per_vehicle_subscription
+    type: flat
+    metric: vehicles
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (not published)
+    userMultiplied: true
+  elements:
+  - name: GPS / Telematics Tracking
+  - name: Driver Safety and Behavior
+  - name: Dispatch
+  - name: Geofencing
+  - name: HOS / ELD Compliance
+- id: fleetcomplete-standard-api-access
+  name: Standard API Access (Included)
+  type: free
+  description: >-
+    Unity GraphQL API and legacy Integration WebAPI access is included at no
+    additional charge for existing Fleet Complete/Powerfleet subscribers -
+    create a token via the Unity login flow or Integration WebAPI
+    authentication menu.
+  entries:
+  - label: Standard Endpoints
+    name: standard_endpoints
+    type: flat
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included with an active fleet subscription
+    userMultiplied: false
+  elements:
+  - name: Unity GraphQL API
+  - name: Legacy Integration WebAPI
+  - name: Token Authentication
+- id: fleetcomplete-professional-services
+  name: Professional Services Custom Integration
+  type: enterprise
+  description: >-
+    Custom endpoints, fields, or bespoke integration work performed by Fleet
+    Complete's Professional Services team, beyond the standard free Unity /
+    Integration WebAPI surface. Priced per engagement.
+  entries:
+  - label: Custom Integration Engagement
+    name: professional_services
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (fcapi@fleetcomplete.com)
+    userMultiplied: false
+  elements:
+  - name: Custom Endpoints
+  - name: Custom Fields
+  - name: Dedicated Integration Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
