@@ -187,6 +187,10 @@ apis:
     documentation-confirmed by name only, not by individually verified path -
     endpoints partially modeled from category names, not fabricated.
 common:
+- type: VulnerabilityDisclosure
+  url: security/fleetcomplete-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/fleetcomplete-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/fleet-complete
 - type: Website
@@ -199,6 +203,8 @@ common:
   url: rate-limits/fleetcomplete-rate-limits.yml
 - type: FinOps
   url: finops/fleetcomplete-finops.yml
+- url: https://blog.fleetcomplete.com/feed/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
