@@ -15,7 +15,19 @@ description: Fleet Complete (operating under parent company Powerfleet since its
   schedules, and logbook reporting. Standard API access is provided free to
   existing Fleet Complete/Powerfleet clients; custom integrations built by
   Fleet Complete Professional Services carry additional fees.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fleetcomplete.png
 tags:
 - Fleet Management
 - Telematics
