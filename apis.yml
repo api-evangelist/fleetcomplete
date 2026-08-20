@@ -130,6 +130,10 @@ apis:
 - aid: fleetcomplete:fleetcomplete-unity-groups-roles-api
   name: Fleet Complete Unity Groups & Roles API
   tags:
+  - Group
+  - Roles
+  - Access Control
+  tags_raw:
   - Groups
   - Roles
   - Access Control
