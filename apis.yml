@@ -15,6 +15,17 @@ description: Fleet Complete (operating under parent company Powerfleet since its
   schedules, and logbook reporting. Standard API access is provided free to
   existing Fleet Complete/Powerfleet clients; custom integrations built by
   Fleet Complete Professional Services carry additional fees.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown
