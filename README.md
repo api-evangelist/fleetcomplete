@@ -1,4 +1,4 @@
-# Fleet Complete (fleetcomplete)
+# Fleet Complete
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,99 +64,116 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Fleet Complete (operating under parent company Powerfleet since its 2024 rebrand) is a global connected commercial vehicle and mobile workforce management platform - GPS/telematics tracking, driver safety, dispatching, geofencing, and regulatory (HOS/ELD) compliance. Its current developer surface is the **Unity API**, a Bearer-token-authenticated GraphQL API at `api.fleetcomplete.com/graphql` covering vehicles, drivers/people, geofences, devices/cameras, groups/roles, and reports/work schedules with roughly 30 queries and 22 mutations. Fleet Complete also still references an older, regionally hosted REST "Integration WebAPI" / EcoFleet-SeeMe surface (versioned v8_5_0/v8_6_1) covering vehicle trip history, tasks/dispatch, work schedules, and logbook reporting.
+Fleet Complete (operating under parent company Powerfleet since its 2024 rebrand) is a global connected commercial vehicle and mobile workforce management platform - GPS/telematics tracking, driver safety, dispatching, geofencing, and regulatory (HOS/ELD) compliance. Its current developer surface is the Unity API, a Bearer-token-authenticated GraphQL API at api.fleetcomplete.com/graphql covering vehicles, drivers/people, geofences, devices/cameras, groups/roles, and reports/work schedules with roughly 30 queries and 22 mutations. Fleet Complete also still references an older, regionally hosted REST "Integration WebAPI" / EcoFleet-SeeMe surface (versioned v8_5_0/v8_6_1) covering vehicle trip history, tasks/dispatch, work schedules, and logbook reporting. Standard API access is provided free to existing Fleet Complete/Powerfleet clients; custom integrations built by Fleet Complete Professional Services carry additional fees.
 
-Standard API access is provided **free** to existing Fleet Complete/Powerfleet clients once they create a token; custom integrations built by Fleet Complete Professional Services carry additional, separately negotiated fees. There is no self-serve, credit-card, pay-as-you-go API product - access is gated behind an active fleet management subscription.
+**Areas:** Fleet Management · Telematics · GPS Tracking · IoT · GraphQL · Vehicle Tracking · Driver Safety · Geofencing
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/fleetcomplete/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fleetcomplete/refs/heads/main/apis.yml)
+## Fleet Complete on APIs.io
 
-## Tags
+Everything profiled for Fleet Complete is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fleetcomplete/](https://apis.io/providers/fleetcomplete/)** — or go straight to one of the APIs or properties below.
 
-- Fleet Management
-- Telematics
-- GPS Tracking
-- IoT
-- GraphQL
-- Vehicle Tracking
-- Driver Safety
-- Geofencing
+### APIs (7)
 
-## Timestamps
+- [Fleet Complete Unity Vehicles API](https://apis.io/apis/fleetcomplete/fleetcomplete-unity-vehicles-api/) — List and filter vehicles (getVehicles with VehicleFilter), fetch a vehicle by ID or VIN (getVehicleById, getVehiclesByVin), list active vehicles, read…
+- [Fleet Complete Unity Drivers & People API](https://apis.io/apis/fleetcomplete/fleetcomplete-unity-drivers-people-api/) — Manage the people and drivers in a fleet - list and filter people (getPeople with PersonFilter), fetch a person by ID, read custom fields, and look up…
+- [Fleet Complete Unity Geofences API](https://apis.io/apis/fleetcomplete/fleetcomplete-unity-geofences-api/) — Fetch a geofence by ID or list/filter geofences (getGeofenceById, getGeofences with GeofenceFilter), then create, update, or delete a geofence and move…
+- [Fleet Complete Unity Devices & Cameras API](https://apis.io/apis/fleetcomplete/fleetcomplete-unity-devices-cameras-api/) — Look up telematics hardware by ID or serial (getDeviceById, getDevicesBySerial; the older getDeviceBySerial is documented as deprecated), and read or set…
+- [Fleet Complete Unity Groups & Roles API](https://apis.io/apis/fleetcomplete/fleetcomplete-unity-groups-roles-api/) — Read the organizational groups and roles used to segment vehicles, people, and geofences (getGroups, getRoles), and create, update, or delete groups…
+- [Fleet Complete Unity Reports & Scheduling API](https://apis.io/apis/fleetcomplete/fleetcomplete-unity-reports-scheduling-api/) — Pull "wrapped" report data and its input options (getWrappedReport, getWrappedReportInputs), read work schedules by ID or in bulk (getWorkScheduleById,…
+- [Fleet Complete Legacy Integration WebAPI](https://apis.io/apis/fleetcomplete/fleetcomplete-legacy-integration-webapi/) — Older, regionally hosted OAuth REST surface predating the Unity GraphQL API, still referenced in Fleet Complete/Powerfleet support materials as the…
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Fleet Complete Unity Vehicles API
+#### GraphQL (1)
 
-List and filter vehicles (`getVehicles` with `VehicleFilter`), fetch a vehicle by ID or VIN (`getVehicleById`, `getVehiclesByVin`), list active vehicles, read vehicle types and custom fields, inspect mapped sensors, and pull the latest or historical telemetry snapshots (`getLatestSnapshots`, `getSnapshots`) over a date range. Mutations update vehicle attributes/custom fields and move vehicles between groups.
+GraphQL schemas.
 
-- **Human URL:** [https://api.fleetcomplete.com/](https://api.fleetcomplete.com/)
-- **Base URL:** `https://api.fleetcomplete.com/graphql`
+- [Fleet Complete Unity GraphQL API](https://apis.io/graphqls/fleetcomplete/fleetcomplete-graphql/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://www.fleetcomplete.com/api/)
-- [API Reference](https://api.fleetcomplete.com/)
-- [GraphQL](graphql/fleetcomplete-graphql.md)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Fleet Complete Unity Drivers & People API
+- [Fleetcomplete Domain Security](https://apis.io/security/fleetcomplete/fleetcomplete-domain-security/)
+- [Fleetcomplete Vulnerability Disclosure](https://apis.io/security/fleetcomplete/fleetcomplete-vulnerability-disclosure/)
 
-Manage the people and drivers in a fleet - list/filter people, fetch a person by ID, read custom fields, and look up driver-to-vehicle assignments. Mutations create, update, and delete people, set custom roles, assign/unassign drivers to vehicles, and issue, update, or revoke driver identification tokens used for in-cab duty-status login.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://api.fleetcomplete.com/](https://api.fleetcomplete.com/)
-- **Base URL:** `https://api.fleetcomplete.com/graphql`
+Published plans, tiers and prices.
 
-### Fleet Complete Unity Geofences API
+- [Fleetcomplete Plans Pricing](https://apis.io/plans/fleetcomplete/fleetcomplete-plans-pricing/)
 
-Fetch a geofence by ID or list/filter geofences, then create, update, or delete a geofence and move geofences between groups. Geofences back the zone-entry/exit alerts fleets use for compliance and dispatch.
+#### Rate limits (1)
 
-- **Human URL:** [https://api.fleetcomplete.com/](https://api.fleetcomplete.com/)
-- **Base URL:** `https://api.fleetcomplete.com/graphql`
+Published request limits.
 
-### Fleet Complete Unity Devices & Cameras API
+- [Fleetcomplete Rate Limits](https://apis.io/rate-limits/fleetcomplete/fleetcomplete-rate-limits/)
 
-Look up telematics hardware by ID or serial (the older `getDeviceBySerial` is documented as deprecated in favor of `getDevicesBySerial`), and read or set in-cab dash-cam privacy mode.
+#### FinOps (1)
 
-- **Human URL:** [https://api.fleetcomplete.com/](https://api.fleetcomplete.com/)
-- **Base URL:** `https://api.fleetcomplete.com/graphql`
+What the API costs to run, by operation.
 
-### Fleet Complete Unity Groups & Roles API
+- [Fleetcomplete Finops](https://apis.io/finops/fleetcomplete/fleetcomplete-finops/)
 
-Read the organizational groups and roles used to segment vehicles, people, and geofences, and create, update, or delete groups.
+## Where to find this API
 
-- **Human URL:** [https://api.fleetcomplete.com/](https://api.fleetcomplete.com/)
-- **Base URL:** `https://api.fleetcomplete.com/graphql`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Fleet Complete Unity Reports & Scheduling API
-
-Pull "wrapped" report data and its input options, read work schedules by ID or in bulk, read alert/compliance rules, and look up labels, meta-sensor definitions, and the authenticated caller's own profile.
-
-- **Human URL:** [https://api.fleetcomplete.com/](https://api.fleetcomplete.com/)
-- **Base URL:** `https://api.fleetcomplete.com/graphql`
-
-### Fleet Complete Legacy Integration WebAPI
-
-Older, regionally hosted OAuth REST surface predating the Unity GraphQL API, still referenced in Fleet Complete/Powerfleet support materials as the "FleetComplete WebAPI" (versioned v8_5_0/v8_6_1) and, on at least one hosted instance, branded EcoFleet/SeeMe. Confirmed resource paths include `Api/Vehicles/get` (vehicle list, live location, trip/raw-data history) and `Api/Places/get` (geofences); the same instance's docs also describe people, dispatch tasks, work schedules, logbook/HOS trip approval, expense tracking, Garmin device messaging, and predefined CSV/XLS/HTML/PDF reports, though their exact paths were not individually confirmed. Standard endpoints are free; custom endpoints built by Fleet Complete Professional Services carry additional fees (contact fcapi@fleetcomplete.com).
-
-- **Human URL:** [https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help](https://tlshosted.fleetcomplete.com/Integration/v8_5_0/Help)
-- **Base URL:** `https://app.ecofleet.com/seeme/services`
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/fleet-complete)
 - [Website](https://www.fleetcomplete.com/)
 - [Documentation](https://www.fleetcomplete.com/api/)
-- [Plans](plans/fleetcomplete-plans-pricing.yml)
-- [Rate Limits](rate-limits/fleetcomplete-rate-limits.yml)
-- [Fin Ops](finops/fleetcomplete-finops.yml)
+- [Blog](https://blog.fleetcomplete.com/feed/)
 
-## Access Model
+## API Evangelist rating
 
-There is no public, self-serve API signup. Standard Unity API and legacy Integration WebAPI access is free to existing Fleet Complete/Powerfleet fleet management subscribers - a token is created from the authenticated customer portal. Custom endpoints or fields require engaging Fleet Complete Professional Services for a fee. No documented public WebSocket API exists on either surface (see `review.yml`).
+**Kin Score 13.1** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 7.9 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fleetcomplete/](https://apis.io/providers/fleetcomplete/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fleet Complete: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fleetcomplete/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
